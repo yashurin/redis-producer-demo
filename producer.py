@@ -1,3 +1,4 @@
+from fastapi import FastAPI, HTTPException
 import json
 import redis
 import time
@@ -5,6 +6,9 @@ import logging
 
 import multiprocessing
 
+app = FastAPI()
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -52,7 +56,8 @@ def producer_process(stream_name):
         producer.produce(message, expiration_threshold=60*1000*3)
 
 
-if __name__ == "__main__":
+def start_producers():
+    logger.info('Starting producers')
     stream1 = "stream1"
     stream2 = "stream2"
     stream3 = "stream3"
@@ -110,4 +115,11 @@ if __name__ == "__main__":
         producer10.join()
 
 
-#message = {'data': f'Message from {stream_name} at {time.time()}'}
+@app.post("/start-pruducers")
+def start_producers():
+    start_producers()
+
+
+@app.get("/")
+def get_root():
+    return {'health_check': 'OK'}
