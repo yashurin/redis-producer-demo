@@ -60,7 +60,7 @@ def producer_process(stream_name):
         producer.produce(message, expiration_threshold=60*1000*3)
 
 
-def start_producers():
+def start_all_producers():
     logger.info('Starting producers')
     stream1 = "stream1"
     stream2 = "stream2"
@@ -121,7 +121,7 @@ def start_producers():
 
 @app.post("/start-pruducers")
 def start_producers():
-    start_producers()
+    start_all_producers()
 
 
 @app.get("/")
