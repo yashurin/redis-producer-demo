@@ -17,7 +17,7 @@ class RedisStreamProducer:
     def __init__(self, stream_name: str):
         """Initialize the RedisStreamProducer with the stream name and Redis connection details."""
         self.stream_name = stream_name
-        startup_nodes = [{"host": "10.128.0.3", "port": "6379"}]
+        startup_nodes = [{"host": "10.128.0.3", "port": 6379}]
         self.redis_client = RedisCluster(startup_nodes=startup_nodes, decode_responses=True)
         redis_host = startup_nodes[0]["host"]
         redis_port = startup_nodes[0]["port"]
