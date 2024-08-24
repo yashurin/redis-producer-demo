@@ -16,8 +16,9 @@ class RedisStreamProducer:
     def __init__(self, stream_name: str):
         """Initialize the RedisStreamProducer with the stream name and Redis connection details."""
         self.stream_name = stream_name
-        self.redis_client = redis.Redis(host="10.4.57.165", port=6379, decode_responses=True)
-        redis_host = "10.4.57.165"
+        redis_host = "localhost" # let us try this
+        self.redis_client = redis.Redis(host=redis_host, port=6379, decode_responses=True)
+        #redis_host = "localhost" #"10.4.57.165"
         redis_port = 6379
 
         try:
