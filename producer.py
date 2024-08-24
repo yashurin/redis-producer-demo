@@ -1,6 +1,5 @@
 from fastapi import FastAPI, HTTPException
 import json
-from redis.cluster import RedisCluster as Redis
 import redis
 import time
 import logging
@@ -17,10 +16,9 @@ class RedisStreamProducer:
     def __init__(self, stream_name: str):
         """Initialize the RedisStreamProducer with the stream name and Redis connection details."""
         self.stream_name = stream_name
-        startup_nodes = [{"host": "10.128.0.3", "port": 6379}]
-        self.redis_client = Redis(host="10.128.0.3", port=6379, decode_responses=True)
-        redis_host = "10.128.0.3" # startup_nodes[0]["host"]
-        redis_port = 6379 #startup_nodes[0]["port"]
+        self.redis_client = redis.Redis(host="10.4.57.165", port=6379, decode_responses=True)
+        redis_host = "10.4.57.165"
+        redis_port = 6379
 
         try:
             self.redis_client.ping()
