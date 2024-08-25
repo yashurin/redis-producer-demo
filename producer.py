@@ -39,6 +39,7 @@ class RedisStreamProducer:
             message['timestamp'] = current_time
             message['expiration_threshold'] = expiration_threshold
             self.redis_client.xadd(self.stream_name, message)
+            logger.info(f"Message: {message}")
             logger.info('Message produced')
         except Exception as e:
             logger.error(f'Unexpected error while producing message: {e}')
