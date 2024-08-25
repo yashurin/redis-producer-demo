@@ -91,6 +91,16 @@ def start_all_producers():
     stream8 = "stream8"
     stream9 = "stream9"
     stream10 = "stream10"
+    stream11 = "stream11"
+    stream12 = "stream12"
+    stream13 = "stream13"
+    stream14 = "stream14"
+    stream15 = "stream15"
+    stream16 = "stream16"
+    stream17 = "stream17"
+    stream18 = "stream18"
+    stream19 = "stream19"
+    stream20 = "stream20"
 
     producer1 = multiprocessing.Process(target=producer_process, args=(stream1,))
     producer2 = multiprocessing.Process(target=producer_process, args=(stream2,))
@@ -102,6 +112,16 @@ def start_all_producers():
     producer8 = multiprocessing.Process(target=producer_process, args=(stream8,))
     producer9 = multiprocessing.Process(target=producer_process, args=(stream9,))
     producer10 = multiprocessing.Process(target=producer_process, args=(stream10,))
+    producer11 = multiprocessing.Process(target=producer_process, args=(stream11,))
+    producer12 = multiprocessing.Process(target=producer_process, args=(stream12,))
+    producer13 = multiprocessing.Process(target=producer_process, args=(stream13,))
+    producer14 = multiprocessing.Process(target=producer_process, args=(stream14,))
+    producer15 = multiprocessing.Process(target=producer_process, args=(stream15,))
+    producer16 = multiprocessing.Process(target=producer_process, args=(stream16,))
+    producer17 = multiprocessing.Process(target=producer_process, args=(stream17,))
+    producer18 = multiprocessing.Process(target=producer_process, args=(stream18,))
+    producer19 = multiprocessing.Process(target=producer_process, args=(stream19,))
+    producer20 = multiprocessing.Process(target=producer_process, args=(stream20,))
     producer1.start()
     producer2.start()
     producer3.start()
@@ -112,6 +132,16 @@ def start_all_producers():
     producer8.start()
     producer9.start()
     producer10.start()
+    producer11.start()
+    producer12.start()
+    producer13.start()
+    producer14.start()
+    producer15.start()
+    producer16.start()
+    producer17.start()
+    producer18.start()
+    producer19.start()
+    producer20.start()
 
     try:
         time.sleep(300)  # Run for 30 seconds
@@ -126,6 +156,16 @@ def start_all_producers():
         producer8.terminate()
         producer9.terminate()
         producer10.terminate()
+        producer11.terminate()
+        producer12.terminate()
+        producer13.terminate()
+        producer14.terminate()
+        producer15.terminate()
+        producer16.terminate()
+        producer17.terminate()
+        producer18.terminate()
+        producer19.terminate()
+        producer20.terminate()
         producer1.join()
         producer2.join()
         producer3.join()
@@ -136,6 +176,16 @@ def start_all_producers():
         producer8.join()
         producer9.join()
         producer10.join()
+        producer11.join()
+        producer12.join()
+        producer13.join()
+        producer14.join()
+        producer15.join()
+        producer16.join()
+        producer17.join()
+        producer18.join()
+        producer19.join()
+        producer20.join()
 
 
 @app.post("/start-pruducers")
