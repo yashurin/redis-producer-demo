@@ -3,6 +3,7 @@ import json
 import redis
 import time
 import logging
+import sys
 
 import multiprocessing
 
@@ -48,16 +49,34 @@ class RedisStreamProducer:
 
 def generate_large_message(stream_name):
     base_message = f'Message from {stream_name} at {time.time()}'
-    large_message = base_message * 50  # To simulate large throughput
+    large_message = base_message * 100  # To simulate large throughput
     message = {'data': large_message}
     return message
 
 
 def producer_process(stream_name):
     producer = RedisStreamProducer(stream_name=stream_name)
+    message_count = 0
+    total_message_size = 0
+    start_time = time.time()
     while True:
+
         message = generate_large_message(stream_name)
+        message_size = sys.getsizeof(json.dumps(message))
         producer.produce(message, expiration_threshold=60*1000*3)
+        message_count += 1
+        total_message_size += message_size
+
+        # Calculate elapsed time
+        elapsed_time = time.time() - start_time
+
+        # Every second, log throughput
+        if elapsed_time >= 1.0:
+            logger.info(
+                f"Produced {message_count} messages with a total size of {total_message_size} bytes in the last {elapsed_time:.2f} seconds.")
+            message_count = 0
+            total_message_size = 0
+            start_time = time.time()
 
 
 def start_all_producers():
