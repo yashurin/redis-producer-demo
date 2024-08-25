@@ -48,8 +48,8 @@ class RedisStreamProducer:
 
 def generate_large_message(stream_name):
     base_message = f'Message from {stream_name} at {time.time()}'
-    #large_message = base_message * 50  # To simulate large throughput
-    message = {'data': base_message}
+    large_message = base_message * 50  # To simulate large throughput
+    message = {'data': large_message}
     return message
 
 
